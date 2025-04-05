@@ -52,17 +52,19 @@ function App() {
 			<h1>Chivarly 2 Weapon Analysis</h1>
 
 			{/* <Toolbar items={weaponOptions} weapon={selectedWeapon} setWeapon={setWeapon} /> */}
-			<div className="column">
-				<Selector items={weaponOptions} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
+			<div className='container'>
+				<div className='column'>
+					<Selector items={weaponOptions} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
+				</div>
+
+
+				<div className='column'>
+					{selectedOptions.map((weapon: string, index) => (
+						<WeaponCard weapon={weapon} />
+					))}
+				</div>
+
 			</div>
-
-
-			<div className='column.right'>
-				{selectedOptions.map((weapon: string, index) => (
-					<WeaponCard weapon={weapon} />
-				))}
-			</div>
-
 
 			{/* <Radarchart options={options} series={series} /> */}
 			{/**/}
