@@ -8,18 +8,18 @@ import { zscore } from "jstat";
 
 //components
 import WeaponInfo from './components/weapon_info';
-import Toolbar from "./components/toolbar";
 import { WeaponDamage, WeaponRange, WeaponStats } from './components/types';
 import Radarchart from './components/radar_chart';
 import Selector from './components/selector';
+import WeaponCard from './components/weapon_card';
 
 
 const weaponOptions = ALL_WEAPONS.map(i => i.name)
 
 function App() {
 
-	const [selectedWeapon, setWeapon] = useState<string>("Argon's Sword");
 	const [selectedOptions, setSelectedOptions] = useState(["Polehammer"]);
+	const [selectedWeapon, setWeapon] = useState<string>("Argon's Sword");
 	const weapon: Weapon | undefined = ALL_WEAPONS.find(i => i.name === selectedWeapon);
 	if (!weapon) return null;
 
@@ -52,16 +52,24 @@ function App() {
 			<h1>Chivarly 2 Weapon Analysis</h1>
 
 			{/* <Toolbar items={weaponOptions} weapon={selectedWeapon} setWeapon={setWeapon} /> */}
-			<Selector items={weaponOptions} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
-
-			<p key={weapon.damageType}>Damage Type: {weapon.damageType}</p>
-
-			<Radarchart options={options} series={series} />
-
-			<WeaponInfo stats={stats} />
+			<div className="column">
+				<Selector items={weaponOptions} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
+			</div>
 
 
-		</>
+			<div className='column.right'>
+				{selectedOptions.map((weapon: string, index) => (
+					<WeaponCard weapon={weapon} />
+				))}
+			</div>
+
+
+			{/* <Radarchart options={options} series={series} /> */}
+			{/**/}
+			{/* <WeaponInfo stats={stats} /> */}
+
+
+		</ >
 	)
 }
 
