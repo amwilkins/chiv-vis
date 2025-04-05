@@ -4,7 +4,7 @@ export default function ItemList({ items, clicked, searchQuery, query, handleCli
 			items
 				.filter((weapon: any) => {
 					if (searchQuery === '') {
-						return null;
+						return weapon;
 					} else if (weapon.toLowerCase().includes(query.toLowerCase())) {
 						return weapon
 					}
