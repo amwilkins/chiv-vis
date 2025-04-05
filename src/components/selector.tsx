@@ -1,23 +1,26 @@
 import { useState } from "react";
 import useDebounce from "../lib/useDebounce";
+import useClickOutside from "../hooks/useClickOutside";
 import ItemList from "./item_list";
-
 
 export default function Selector({ items, selectedOptions, setSelectedOptions }: { items: array }) {
 
 	const [query, setQuery] = useState('')
 	const [clicked, setClicked] = useState(false)
 
-	const searchQuery = useDebounce(query, 500)
+	const searchQuery = useDebounce(query, 300)
 
 	function handleClick(item: string) {
 		setSelectedOptions([...selectedOptions, item])
-		setClicked(false)
 	}
 
+	function handleClickOutside() {
+		setClicked(false);
+	}
+	const ref = useClickOutside(handleClickOutside);
 
 	return (
-		<fieldset id="weapons" className="">
+		<fieldset ref={ref} id="weapons" className="">
 			<legend>Weapons</legend>
 
 			<div className="Searchbar">
