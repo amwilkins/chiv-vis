@@ -6,7 +6,7 @@ export default function Radarchart({ stats, type }: { stats: WeaponStats, type: 
 	let labels: Array<string> = ['Slash', 'Overhead', 'Stab'];
 	let data: Array<number> = [stats.damage.lSlash, stats.damage.lOverhead, stats.damage.lStab];
 
-	if (type === "heavyAttack") {
+	if (type === "Heavy Attack") {
 		data = [stats.damage.hSlash, stats.damage.hOverhead, stats.damage.hStab];
 	}
 

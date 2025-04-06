@@ -26,8 +26,8 @@ function App() {
 				</div>
 
 				<div className='column'>
-					{selectedOptions.map((weapon: string, index) => (
-						<WeaponCard key={index} weapon={weapon} type={statsType} />
+					{selectedOptions.map((weapon: string) => (
+						<WeaponCard weapon={weapon} statsType={statsType} />
 					))}
 				</div>
 			</div>

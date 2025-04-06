@@ -34,5 +34,5 @@ export const keyMap: { [key: string]: string } = {
 
 }
 
-export type StatsType = "lightAttack" | "heavyAttack" | "regRange" | "altRange" | "lightSpeed" | "heavySpeed"
+export type StatsType = "Light Attack" | "Heavy Attack" | "Range" | "Alt Range" | "Light Timings" | "Heavy Timings"
 

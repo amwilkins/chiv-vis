@@ -1,4 +1,4 @@
-export default function ItemList({ items, clicked, searchQuery, query, handleClick }) {
+export default function ItemList({ items, clicked, searchQuery, query, handleClick }: { items: string[], clicked: Boolean, searchQuery: any, query: any, handleClick: any }) {
 	if (clicked) {
 		return (
 			items

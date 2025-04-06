@@ -3,7 +3,7 @@ import useDebounce from "../lib/useDebounce";
 import useClickOutside from "../hooks/useClickOutside";
 import ItemList from "./item_list";
 
-export default function Selector({ items, selectedOptions, setSelectedOptions }: { items: array }) {
+export default function Selector({ items, selectedOptions, setSelectedOptions }: { items: string[], selectedOptions: string[], setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>> }) {
 
 	const [query, setQuery] = useState('')
 	const [clicked, setClicked] = useState(false)
@@ -32,9 +32,10 @@ export default function Selector({ items, selectedOptions, setSelectedOptions }:
 					/>
 				</div>
 
-
 			</fieldset >
-			<ItemList className="itemlist" items={items} clicked={clicked} searchQuery={searchQuery} query={query} handleClick={handleClick} />
+			<div className="itemlist">
+				<ItemList items={items} clicked={clicked} searchQuery={searchQuery} query={query} handleClick={handleClick} />
+			</div>
 		</div>
 	);
 }
