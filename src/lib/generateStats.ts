@@ -2,13 +2,12 @@ import { std } from "mathjs";
 import { zscore } from "jstat";
 
 import { Weapon } from "chivalry2-weapons";
-import { WeaponDamage, WeaponRange, WeaponStats } from "../components/types";
+import { WeaponDamage, WeaponRange, WeaponStats } from "./types";
 import { ALL_WEAPONS } from "chivalry2-weapons";
 
-export default function generateStats(selectedWeapon): WeaponStats {
+export default function generateStats(selectedWeapon: string): WeaponStats {
 
-	const weapon: Weapon | undefined = ALL_WEAPONS.find(i => i.name === selectedWeapon);
-	if (!weapon) return null;
+	let weapon: Weapon = ALL_WEAPONS.find(i => i.name === selectedWeapon);
 
 	let RangeSD = std([weapon.attacks.slash.range, weapon.attacks.stab.range, weapon.attacks.overhead.range]);
 	let altRangeSD = std([weapon.attacks.slash.altRange, weapon.attacks.stab.altRange, weapon.attacks.overhead.altRange]);

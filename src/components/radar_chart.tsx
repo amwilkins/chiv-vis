@@ -27,7 +27,7 @@ export default function Radarchart({ stats, type }: { stats: WeaponStats, type: 
 		plotOptions: {
 			radar: {
 				offsetY: 20,
-				size: 90,
+				size: 85,
 				polygons: {
 					connectorColors: 'transparent',
 					strokeWidth: 1

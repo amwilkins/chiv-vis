@@ -2,7 +2,7 @@ import { ALL_WEAPONS } from "chivalry2-weapons";
 import { useState } from 'react';
 import './App.css';
 import Selector from './components/selector';
-import { StatsType } from './components/types';
+import { StatsType } from './lib/types';
 import WeaponCard from './components/weapon_card';
 
 const weaponOptions = ALL_WEAPONS.map(i => i.name)
@@ -26,8 +26,8 @@ function App() {
 				</div>
 
 				<div className='column'>
-					{selectedOptions.map((weapon: string) => (
-						<WeaponCard weapon={weapon} statsType={statsType} />
+					{selectedOptions.map((weapon: string, index: number) => (
+						<WeaponCard key={index} weapon={weapon} statsType={statsType} />
 					))}
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 import generateStats from "../lib/generateStats";
-import { WeaponStats, StatsType } from './types';
+import { WeaponStats, StatsType } from '../lib/types';
 import Radarchart from "./radar_chart";
 
 export default function WeaponCard({ weapon, statsType }: { weapon: string, statsType: StatsType }) {
