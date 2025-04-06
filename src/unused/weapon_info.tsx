@@ -1,4 +1,4 @@
-import { WeaponStats, keyMap } from './types';
+import { WeaponStats, keyMap } from '../lib/types';
 
 export default function WeaponInfo({ stats }: { stats: WeaponStats }) {
 	if (!stats) return null;
