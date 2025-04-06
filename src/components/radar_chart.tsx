@@ -1,10 +1,11 @@
 import Chart from "react-apexcharts";
 import { StatsType, WeaponStats } from "./types";
 
-export default function Radarchart({ weapon, stats, type }: { weapon: string, stats: WeaponStats, type: StatsType }) {
+export default function Radarchart({ stats, type }: { stats: WeaponStats, type: StatsType }) {
 
 	let labels: Array<string> = ['Slash', 'Overhead', 'Stab'];
 	let data: Array<number> = [stats.damage.lSlash, stats.damage.lOverhead, stats.damage.lStab];
+
 	if (type === "heavyAttack") {
 		data = [stats.damage.hSlash, stats.damage.hOverhead, stats.damage.hStab];
 	}
@@ -25,7 +26,8 @@ export default function Radarchart({ weapon, stats, type }: { weapon: string, st
 		},
 		plotOptions: {
 			radar: {
-				size: 70,
+				offsetY: 20,
+				size: 90,
 				polygons: {
 					connectorColors: 'transparent',
 					strokeWidth: 1
