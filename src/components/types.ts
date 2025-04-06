@@ -33,3 +33,6 @@ export const keyMap: { [key: string]: string } = {
 	altStab: "Alt Stab",
 
 }
+
+export type StatsType = "lightAttack" | "heavyAttack" | "regRange" | "altRange" | "lightSpeed" | "heavySpeed"
+
