@@ -32,23 +32,40 @@
     animation: logo-spin infinite 20s linear;
   }
 }
+
+.container {
+	display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 200px 1fr;
+}
+
 .column {
-	position: absolute;
-	width: 20%;
+	display: grid;
+  grid-gap: 10px;
+  grid-template-rows: 180px;
+  /*border-radius: 5px;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
 }
-
-.column.right {
-	position: absolute;
-	width: 100%;
-}
-
 
 .card {
-	float: right;
-	width: 50%;
-  padding: 2em;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 20px;
+  /*flex-direction: row;*/
+  padding: 6px;
+  /*padding: 2em;*/
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
   transition: 0.3s;
+  background-color: #262626;
+}
+
+.itemlist {
+	position:relative;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+  transition: 0.3s;
+  z-index: 7;
 }
 
 .read-the-docs {
