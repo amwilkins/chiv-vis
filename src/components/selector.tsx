@@ -20,20 +20,21 @@ export default function Selector({ items, selectedOptions, setSelectedOptions }:
 	const ref = useClickOutside(handleClickOutside);
 
 	return (
-		<fieldset ref={ref} id="weapons" className="">
-			<legend>Weapons</legend>
+		<div ref={ref} id="weapons">
+			<fieldset >
+				<legend>Weapons</legend>
 
-			<div className="Searchbar">
-				<input
-					placeholder="Search Weapons"
-					onClick={() => setClicked(true)}
-					onChange={event => setQuery(event.target.value)}
-				/>
-			</div>
+				<div className="Searchbar">
+					<input
+						placeholder="Search Weapons"
+						onClick={() => setClicked(true)}
+						onChange={event => setQuery(event.target.value)}
+					/>
+				</div>
 
-			<ItemList items={items} clicked={clicked} searchQuery={searchQuery} query={query} handleClick={handleClick} />
 
-		</fieldset >
-
+			</fieldset >
+			<ItemList className="itemlist" items={items} clicked={clicked} searchQuery={searchQuery} query={query} handleClick={handleClick} />
+		</div>
 	);
 }
