@@ -43,21 +43,21 @@
 	display: grid;
   grid-gap: 10px;
   grid-template-rows: 180px;
-  /*border-radius: 5px;*/
-  /*display: flex;*/
-  /*flex-direction: column;*/
 }
 
-.card {
+.weaponCard {
 	display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-gap: 20px;
-  /*flex-direction: row;*/
-  padding: 6px;
-  /*padding: 2em;*/
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
   transition: 0.3s;
   background-color: #262626;
+  line-height: .7;
+}
+
+.weaponCard div {
+ text-align: right;
 }
 
 .itemlist {
