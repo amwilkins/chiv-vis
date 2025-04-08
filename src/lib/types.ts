@@ -36,3 +36,5 @@ export const keyMap: { [key: string]: string } = {
 
 export type StatsType = "Light Attack" | "Heavy Attack" | "Range" | "Alt Range" | "Light Timings" | "Heavy Timings"
 
+export const pages = ["Description", "Tool"]
+

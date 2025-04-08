@@ -1,36 +1,23 @@
-import { ALL_WEAPONS } from "chivalry2-weapons";
 import { useState } from 'react';
 import './App.css';
-import Selector from './components/selector';
-import { StatsType } from './lib/types';
-import WeaponCard from './components/weapon_card';
+import { TabContent } from "./components/tabs";
+import { TabButtons } from './components/tab_buttons';
+import { pages } from './lib/types';
 
-const weaponOptions = ALL_WEAPONS.map(i => i.name)
 
 function App() {
+	const [activeTab, setActiveTab] = useState(pages[0]);
 	const [selectedOptions, setSelectedOptions] = useState(["Polehammer"]);
-
-	// const [selectedWeapon, setWeapon] = useState<string>("Argon's Sword");
-	// const weapon: Weapon | undefined = ALL_WEAPONS.find(i => i.name === selectedWeapon);
-	// if (!weapon) return null;
-
-	const statsType: StatsType = "Light Attack"
 
 	return (
 		<>
 			<h1>Chivarly 2 Weapon Analysis</h1>
 
-			<div className='container'>
-				<div className='column'>
-					<Selector items={weaponOptions} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
-				</div>
 
-				<div className='column'>
-					{selectedOptions.map((weapon: string, index: number) => (
-						<WeaponCard key={index} weapon={weapon} statsType={statsType} />
-					))}
-				</div>
-			</div>
+			<TabButtons data={pages} activeTab={activeTab} setActiveTab={setActiveTab} />
+			<TabContent activeTab={activeTab} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
+
+
 		</ >
 	)
 }

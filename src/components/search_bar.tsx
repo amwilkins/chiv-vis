@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useDebounce from "../lib/useDebounce";
 import Select from "react-select/base";
 
 export default function Searchbar({ items }) {
