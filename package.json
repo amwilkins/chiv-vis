@@ -12,17 +12,22 @@
 	"dependencies": {
 		"apexcharts": "^4.5.0",
 		"chivalry2-weapons": "^1.0.6",
+		"fs": "^0.0.1-security",
 		"jstat": "^1.9.6",
 		"lodash": "^4.17.21",
 		"mathjs": "^14.4.0",
+		"path": "^0.12.7",
 		"react": "^19.0.0",
 		"react-apexcharts": "^1.7.0",
 		"react-dom": "^19.0.0",
 		"react-select": "^5.10.1",
-		"react-use": "^17.6.0"
+		"react-use": "^17.6.0",
+		"vite-plugin-commonjs": "^0.10.4",
+		"vite-plugin-fs": "^1.1.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.21.0",
+		"@types/node": "^22.14.0",
 		"@types/react": "^19.0.10",
 		"@types/react-dom": "^19.0.4",
 		"@vitejs/plugin-react": "^4.3.4",

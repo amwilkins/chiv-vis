@@ -1,9 +1,8 @@
 import { std } from "mathjs";
 import { zscore } from "jstat";
 
-import { Weapon } from "chivalry2-weapons";
+import { Weapon, ALL_WEAPONS } from "chivalry2-weapons";
 import { WeaponDamage, WeaponRange, WeaponStats } from "./types";
-import { ALL_WEAPONS } from "chivalry2-weapons";
 
 export default function generateStats(selectedWeapon: string): WeaponStats {
 

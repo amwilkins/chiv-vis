@@ -1,10 +1,11 @@
 import generateStats from "../lib/generateStats";
 import { WeaponStats, StatsType } from '../lib/types';
+import scoredWeapons from '../scoredWeapons.json';
 import Radarchart from "./radar_chart";
 
 export default function WeaponCard({ weapon, statsType }: { weapon: string, statsType: StatsType }) {
 
-	const stats: WeaponStats = generateStats(weapon);
+	const stats = scoredWeapons.filter(item => item.name === weapon)[0];
 
 
 	return (
@@ -22,40 +23,40 @@ export default function WeaponCard({ weapon, statsType }: { weapon: string, stat
 					Light Attacks
 				</h3>
 				<p>
-					Slash: {stats.damage.lAvg.toFixed(2)}
+					Average: {stats.attacks.average.light.damage.toFixed(2)}
 				</p>
 				<p>
-					Slash: {stats.damage.lSlash.toFixed(2)}
+					Slash: {stats.attackZScores.light.slash.toFixed(2)}
 				</p>
 				<p>
-					Overhead: {stats.damage.lOverhead.toFixed(2)}
+					Overhead: {stats.attackZScores.light.overhead.toFixed(2)}
 				</p>
 				<p>
-					Stab: {stats.damage.lStab.toFixed(2)}
+					Stab: {stats.attackZScores.light.stab.toFixed(2)}
 				</p>
 			</div>
 
-			<Radarchart stats={stats} type={statsType} />
+			<Radarchart weapon={weapon} type={"Light Attack"} />
 
 			<div>
 				<h3>
 					Heavy Attacks
 				</h3>
 				<p>
-					Average: {stats.damage.hAvg.toFixed(2)}
+					Average: {stats.attacks.average.heavy.damage.toFixed(2)}
 				</p>
 				<p>
-					Slash: {stats.damage.hSlash.toFixed(2)}
+					Slash: {stats.attackZScores.heavy.slash.toFixed(2)}
 				</p>
 				<p>
-					Overhead: {stats.damage.hOverhead.toFixed(2)}
+					Overhead: {stats.attackZScores.heavy.overhead.toFixed(2)}
 				</p>
 				<p>
-					Stab: {stats.damage.hStab.toFixed(2)}
+					Stab: {stats.attackZScores.heavy.stab.toFixed(2)}
 				</p>
 			</div>
 
-			<Radarchart stats={stats} type={statsType} />
+			<Radarchart weapon={weapon} type={"Heavy Attack"} />
 		</div >
 	)
 }

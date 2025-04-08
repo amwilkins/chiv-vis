@@ -1,28 +1,51 @@
 import Chart from "react-apexcharts";
-import { StatsType, WeaponStats } from "./types";
+import { StatsType } from "../lib/types";
+import stats from '../scoredWeapons.json';
 
-export default function Radarchart({ stats, type }: { stats: WeaponStats, type: StatsType }) {
+export default function Radarchart({ weapon, type }: { weapon: string, type: StatsType }) {
 
-	let labels: Array<string> = ['Slash', 'Overhead', 'Stab'];
-	let data: Array<number> = [stats.damage.lSlash, stats.damage.lOverhead, stats.damage.lStab];
+	const filteredItems = stats.filter(item => item.name === weapon)[0];
 
-	if (type === "Heavy Attack") {
-		data = [stats.damage.hSlash, stats.damage.hOverhead, stats.damage.hStab];
+
+	console.log(filteredItems.attackZScores.heavy)
+
+	function getRadarData(type: StatsType) {
+		if (type === "Heavy Attack") {
+			return (
+				{
+					labels: Object.keys(filteredItems.attackZScores.heavy),
+					data: Object.values(filteredItems.attackZScores.heavy)
+				})
+		}
+		else if (type === "Light Attack") {
+			return (
+				{
+					labels: Object.keys(filteredItems.attackZScores.light),
+					data: Object.values(filteredItems.attackZScores.light)
+				})
+		}
 	}
 
+
+	const series = [
+		{
+			name: "Data",
+			data: getRadarData(type)?.data
+		}
+	]
 	const options = {
 		chart: {
 			type: 'radar',
 		},
-		labels: labels,
+		labels: getRadarData(type)?.labels,
 		markers: {
 			size: 0
 		},
 		yaxis: {
 			show: false,
 			tickAmount: 2,
-			min: -3,
-			max: 3,
+			min: -2,
+			max: 2,
 		},
 		plotOptions: {
 			radar: {
@@ -35,11 +58,6 @@ export default function Radarchart({ stats, type }: { stats: WeaponStats, type: 
 			}
 		}
 	};
-	const series = [
-		{
-			name: 'Damage',
-			data: data,
-		}]
 
 	return (
 		<div>
