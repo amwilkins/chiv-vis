@@ -1,11 +1,9 @@
 import { ALL_WEAPONS } from "chivalry2-weapons";
-import { StatsType } from "../lib/types";
 import Selector from "./selector";
 import WeaponCard from "./weapon_card";
 
-export default function CardPage({ selectedOptions, setSelectedOptions }: { selectedOptions: string[], setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>> }) {
+export default function CardPage({ selectedOptions, setSelectedOptions, activeTab }: { selectedOptions: string[], setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>, activeTab: string }) {
 	const weaponOptions = ALL_WEAPONS.map(i => i.name)
-	const statsType: StatsType = "Light Attack"
 
 	return (
 		<div className='container'>
@@ -16,7 +14,7 @@ export default function CardPage({ selectedOptions, setSelectedOptions }: { sele
 
 			<div className='column'>
 				{selectedOptions.map((weapon: string, index: number) => (
-					<WeaponCard key={index} weapon={weapon} statsType={statsType} />
+					<WeaponCard key={index} weapon={weapon} activeTab={activeTab} />
 				))}
 			</div>
 

@@ -7,8 +7,6 @@ export default function Radarchart({ weapon, type }: { weapon: string, type: Sta
 	const filteredItems = stats.filter(item => item.name === weapon)[0];
 
 
-	console.log(filteredItems.attackZScores.heavy)
-
 	function getRadarData(type: StatsType) {
 		if (type === "Heavy Attack") {
 			return (
@@ -22,6 +20,20 @@ export default function Radarchart({ weapon, type }: { weapon: string, type: Sta
 				{
 					labels: Object.keys(filteredItems.attackZScores.light),
 					data: Object.values(filteredItems.attackZScores.light)
+				})
+		}
+		else if (type === "Range") {
+			return (
+				{
+					labels: Object.keys(filteredItems.rangeZScores.range),
+					data: Object.values(filteredItems.rangeZScores.range)
+				})
+		}
+		else if (type === "Alt Range") {
+			return (
+				{
+					labels: Object.keys(filteredItems.rangeZScores.altRange),
+					data: Object.values(filteredItems.rangeZScores.altRange)
 				})
 		}
 	}
