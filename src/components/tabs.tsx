@@ -14,7 +14,7 @@ export function TabContent({ activeTab, selectedOptions, setSelectedOptions }: {
 
 	function createCardPage() {
 		return (
-			<CardPage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
+			<CardPage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} activeTab={activeTab} />
 		)
 	}
 
@@ -27,9 +27,9 @@ export function TabContent({ activeTab, selectedOptions, setSelectedOptions }: {
 
 	return (
 		<div className="tab_container">
-			<div className="column">
-				{getPage(activeTab)}
-			</div>
+			{getPage(activeTab)}
+			{/* <div className="column"> */}
+			{/* </div> */}
 		</div>
 	);
 }
