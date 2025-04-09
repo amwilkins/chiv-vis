@@ -25,7 +25,7 @@ export default function DescriptionPage({ }) {
 			<p>
 				For example:
 			</p>
-			<WeaponCard key={1} weapon={"Polehammer"} />
+			<WeaponCard key={1} weapon={"Polehammer"} activeTab="Damage" />
 
 			<p>
 				This is the damage card for the Polehammer.
