@@ -1,9 +1,14 @@
-import { ALL_WEAPONS } from "chivalry2-weapons";
+import { ALL_WEAPONS, POLEHAMMER } from "chivalry2-weapons";
 import Selector from "./selector";
 import WeaponCard from "./weapon_card";
+import TimingData from "./timings_table";
+import { MeleeAttack } from "chivalry2-weapons";
 
 export default function TimingsPage({ selectedOptions, setSelectedOptions, activeTab }: { selectedOptions: string[], setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>, activeTab: string }) {
 	const weaponOptions = ALL_WEAPONS.map(i => i.name)
+
+
+	let attack: MeleeAttack = POLEHAMMER.attacks.slash.light;
 
 	return (
 		<div className='container'>
@@ -13,9 +18,7 @@ export default function TimingsPage({ selectedOptions, setSelectedOptions, activ
 			</div>
 
 			<div className='column'>
-				{selectedOptions.map((weapon: string, index: number) => (
-					<WeaponCard key={index} weapon={weapon} activeTab={activeTab} />
-				))}
+				<TimingData attack={attack} timingType={"Attack"} />
 			</div>
 
 		</div>
