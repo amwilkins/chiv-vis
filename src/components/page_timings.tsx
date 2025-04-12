@@ -7,9 +7,6 @@ import { MeleeAttack } from "chivalry2-weapons";
 export default function TimingsPage({ selectedOptions, setSelectedOptions, activeTab }: { selectedOptions: string[], setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>, activeTab: string }) {
 	const weaponOptions = ALL_WEAPONS.map(i => i.name)
 
-
-	let attack: MeleeAttack = POLEHAMMER.attacks.slash.light;
-
 	return (
 		<div className='container'>
 
@@ -18,7 +15,7 @@ export default function TimingsPage({ selectedOptions, setSelectedOptions, activ
 			</div>
 
 			<div className='column'>
-				<TimingData attack={attack} timingType={"Attack"} />
+				<TimingData selectedOptions={selectedOptions} timingType={"Attack"} />
 			</div>
 
 		</div>

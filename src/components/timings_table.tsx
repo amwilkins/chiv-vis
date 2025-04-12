@@ -1,100 +1,136 @@
 //import scoredWeapons from '../scoredWeapons.json';
-import { MeleeAttack } from "chivalry2-weapons";
+import { ALL_WEAPONS, MeleeAttack, Weapon } from "chivalry2-weapons";
 import Chart from "react-apexcharts";
 import { TimingType } from "../lib/types";
 
-export default function TimingData({ attack, timingType }: { attack: MeleeAttack, timingType: TimingType }) {
+export default function TimingData({ selectedOptions }: { selectedOptions: string[], timingType: TimingType }) {
 
-	function getTimingData(attack: MeleeAttack, timingType: TimingType) {
-		let seriesData: any;
+	type AttackName = 'slash' | 'overhead' | 'stab';
+	type AttackStyle = 'light' | 'heavy';
 
-		if (timingType == "Attack") {
-			seriesData = {
-				holding: attack.holding,
-				windup: attack.windup,
-				release: attack.release,
-				recovery: attack.recovery
-			}
-		}
-		else if (timingType == "Combo") {
-			seriesData = {
-				holding: attack.holding,
-				windup: attack.windup,
-				release: attack.release,
-				holding2: attack.holding,
-				combo: attack.combo,
-			}
-		}
-		else if (timingType == "Ripost") {
-			seriesData = {
-				holding: attack.holding,
-				riposte: attack.riposte,
-				release: attack.release,
-				holding2: attack.holding,
-				combo: attack.combo,
-			}
-		}
-		else if (timingType == "Thwack") {
-			seriesData = {
-				holding: attack.holding,
-				riposte: attack.riposte,
-				release: attack.release / 2, //hitting at the midpoint of the attack
-				thwack: attack.thwack,
-				holding2: attack.holding,
-				combo: attack.combo,
-			}
-		}
-		else if (timingType == "Fast Thwack") {
-			seriesData = {
-				holding: attack.holding,
-				riposte: attack.riposte,
-				release: attack.release / 5, //hitting at first 20% of the attack
-				thwack: attack.thwack,
-				holding2: attack.holding,
-				combo: attack.combo,
-			}
-		}
-		return (
-			{
-				labels: Object.keys(seriesData),
-				data: Object.values(seriesData)
-			})
+	type TimingInfo = {
+		holding: number;
+		windup: number;
+		release: number;
+		recovery: number;
+		combo: number;
+		thwack: number;
+		riposte: number;
+	};
 
+	type WeaponTimingRecord = {
+		weapon: string;
+		attackType: AttackName;
+		attackStyle: AttackStyle;
+		timings: TimingInfo;
+	};
+
+	function extractTimingInfo(attack: MeleeAttack): TimingInfo {
+		const {
+			holding,
+			windup,
+			release,
+			recovery,
+			combo,
+			thwack,
+			riposte,
+		} = attack;
+
+		return {
+			holding,
+			windup,
+			release,
+			recovery,
+			combo,
+			thwack,
+			riposte,
+		};
 	}
 
-	const series = [
-		{
-			name: timingType,
-			data: getTimingData(attack, timingType)?.data
-		},
-		{
-			name: "Combo",
-			data: getTimingData(attack, "Combo")?.data
-		}
-	]
-	const options = {
-		chart: {
-			type: "bar",
-			stacked: true
-		},
-		labels: getTimingData(attack, timingType)?.labels,
-		plotOptions: {
-			bar: {
-				rangeBarGroupRows: false,
-				horizontal: true,
-				dataLabels: {
-					total: {
-						enabled: false,
-						offsetX: 0
-					}
+	function getTimingInfoForWeapons(
+		weaponNames: string[],
+		allWeapons: Weapon[]
+	): WeaponTimingRecord[] {
+		const attackTypes: AttackName[] = ['slash', 'overhead', 'stab'];
+		const styles: AttackStyle[] = ['light', 'heavy'];
+
+		const results: WeaponTimingRecord[] = [];
+
+		for (const name of weaponNames) {
+			const weapon = allWeapons.find(w => w.name === name);
+			if (!weapon) {
+				console.warn(`Weapon not found: ${name}`);
+				continue;
+			}
+
+			for (const type of attackTypes) {
+				const attack = weapon.attacks[type];
+				for (const style of styles) {
+					const meleeAttack = attack[style];
+					results.push({
+						weapon: weapon.name,
+						attackType: type,
+						attackStyle: style,
+						timings: extractTimingInfo(meleeAttack),
+					});
 				}
 			}
 		}
-	};
+
+		return results;
+	}
+	const timingStats = getTimingInfoForWeapons(selectedOptions, ALL_WEAPONS);
+	console.log(timingStats)
+
+	// const series = [
+	// 	{
+	// 		name: "Holding",
+	// 		data: [{
+	// 			x: "Polehammer",
+	// 			y: getTimingData(attack, timingType).holding
+	// 		}]
+	// 	},
+	// 	{
+	// 		name: "Windup",
+	// 		data: [{
+	// 			x: "Polehammer",
+	// 			y: getTimingData(attack, timingType)?.windup
+	// 		}]
+	// 	},
+	// 	{
+	// 		name: "Release",
+	// 		data: [{
+	// 			x: "Release",
+	// 			y: getTimingData(attack, timingType)?.release
+	// 		}]
+	// 	},
+	// ]
+	// const options = {
+	// 	chart: {
+	// 		type: "bar",
+	// 		stacked: true
+	// 	},
+	// 	//labels: getTimingData(attack, timingType)?.labels,
+	// 	plotOptions: {
+	// 		bar: {
+	// 			rangeBarGroupRows: false,
+	// 			horizontal: true,
+	// 			dataLabels: {
+	// 				total: {
+	// 					enabled: false,
+	// 					offsetX: 0
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// };
+
+
+	//<Chart options={options} type="bar" series={series} />
 
 	return (
 		<div>
-			<Chart options={options} type="bar" series={series} />
+			test
 		</div >
 	);
 }
