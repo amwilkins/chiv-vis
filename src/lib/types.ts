@@ -38,5 +38,5 @@ export type StatsType = "Light Attack" | "Heavy Attack" | "Range" | "Alt Range" 
 export type AttackType = "Slash" | "Overhead" | "Stab"
 export type TimingType = "Attack" | "Combo" | "Ripost" | "Fast Thwack" | "Thwack"
 
-export const pages = ["Timings", "Damage", "Range", "Description"]
+export const pages = ["Damage", "Range", "Timings", "Description"]
 

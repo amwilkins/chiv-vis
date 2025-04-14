@@ -5,6 +5,14 @@ export default function WeaponCard({ weapon, activeTab }: { weapon: string, acti
 
 	const stats = scoredWeapons.filter(item => item.name === weapon)[0];
 
+	let tabType: string[] = [""]
+	if (activeTab == "Damage") {
+		tabType = ["Light Attack", "Heavy Attack"]
+	}
+	else {
+		tabType = ["Range", "Alt Range"]
+	}
+
 
 	function setData(activeTab: string) {
 		if (activeTab === "Damage") {
@@ -75,7 +83,7 @@ export default function WeaponCard({ weapon, activeTab }: { weapon: string, acti
 				</p>
 			</div>
 
-			<Radarchart weapon={weapon} type={"Light Attack"} />
+			<Radarchart weapon={weapon} type={tabType[0]} />
 
 			<div>
 				<h3>
@@ -95,7 +103,7 @@ export default function WeaponCard({ weapon, activeTab }: { weapon: string, acti
 				</p>
 			</div>
 
-			<Radarchart weapon={weapon} type={"Heavy Attack"} />
+			<Radarchart weapon={weapon} type={tabType[1]} />
 		</div >
 	)
 }
